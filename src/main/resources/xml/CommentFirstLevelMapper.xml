@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="personal.timeless.cms.mapper.CommentFirstLevelMapper" >
+	<insert id="insertFlcComment" useGeneratedKeys="true" keyProperty="id"  parameterType="commentFirstLevel">
+		insert into commentFirstLevel(sayingId, commenter, commenterAvatar, commentContent, commentTime) values(
+		#{sayingId}, #{commenter}, #{avatar}, #{commentContent}, #{commentTime})
+	</insert>
+	
+	<delete id="deleteFlcComment">
+		delete from commentSecondLevel where flcId = #{commentId} and sayingId = #{sayingId};
+		delete from commentFirstLevel where flc_id = #{commentId} and sayingId = #{sayingId};
+	</delete>
+ </mapper>

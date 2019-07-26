@@ -3,34 +3,35 @@ package personal.timeless.cms.bean;
 import java.util.Date;
 import java.util.List;
 
-public class FirstLevelComment {
+public class CommentFirstLevel {
 	private Integer id;
 	private Integer sayingId;
 	private String commenter;
 	private String avatar;
 	private String commentContent;
 	private Date commentTime;
-	private Saying saying;
-	private List<SecondLevelComment> slcs;
-	
-	public FirstLevelComment() {
+	private CommentSaying commentSaying;
+	private List<CommentSecondLevel> slcs;
+
+
+	public CommentFirstLevel() {
 		this.commentTime = new Date();
 	}
 	
-	public List<SecondLevelComment> getSlcs() {
+	public List<CommentSecondLevel> getSlcs() {
 		return slcs;
 	}
 
-	public void setSlcs(List<SecondLevelComment> slcs) {
+	public void setSlcs(List<CommentSecondLevel> slcs) {
 		this.slcs = slcs;
 	}
 
-	public Saying getSaying() {
-		return saying;
+	public CommentSaying getCommentSaying() {
+		return commentSaying;
 	}
 
-	public void setSaying(Saying saying) {
-		this.saying = saying;
+	public void setCommentSaying(CommentSaying commentSaying) {
+		this.commentSaying = commentSaying;
 	}
 
 	public Integer getId() {
@@ -83,7 +84,7 @@ public class FirstLevelComment {
 
 	@Override
 	public String toString() {
-		return "FirstLevelComment [flc_id=" + id + ", sayingId=" + sayingId + ", commenter=" + commenter
+		return "CommentFirstLevel [flc_id=" + id + ", sayingId=" + sayingId + ", commenter=" + commenter
 				+ ", avatar=" + avatar + ", commentContent=" + commentContent + ", commentTime=" + commentTime + "]";
 	}
 }

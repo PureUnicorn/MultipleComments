@@ -3,22 +3,46 @@ package personal.timeless.cms.bean;
 import java.util.Date;
 import java.util.List;
 
-public class Saying {
+public class CommentSaying {
 	private Integer id;
 	private String sayingContent;
 	private String author;
+	private Integer sectionId;
 	private String avatar;
 	private String likes;
 	private Date createTime;
-	private List<FirstLevelComment> flcs;
+	private List<CommentFirstLevel> flcs;
 	
-	public Saying() {}
-	
-	public List<FirstLevelComment> getFlcs() {
+	public CommentSaying() {}
+
+	@Override
+	public String toString() {
+		return "CommentSaying{" +
+				"id=" + id +
+				", sayingContent='" + sayingContent + '\'' +
+				", author='" + author + '\'' +
+				", sectionId=" + sectionId +
+				", avatar='" + avatar + '\'' +
+				", likes='" + likes + '\'' +
+				", createTime=" + createTime +
+				", flcs=" + flcs +
+				'}';
+	}
+
+
+	public Integer getSectionId() {
+		return sectionId;
+	}
+
+	public void setSectionId(Integer sectionId) {
+		this.sectionId = sectionId;
+	}
+
+	public List<CommentFirstLevel> getFlcs() {
 		return flcs;
 	}
 
-	public void setFlcs(List<FirstLevelComment> flcs) {
+	public void setFlcs(List<CommentFirstLevel> flcs) {
 		this.flcs = flcs;
 	}
 

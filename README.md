@@ -7,7 +7,7 @@
 ### 三张表<br/>
 ![](https://raw.githubusercontent.com/timelessmemory/WikiLibrary/master/cms/tables.png)
 ### saying说说表<br/>
-![](https://raw.githubusercontent.com/timelessmemory/WikiLibrary/master/cms/saying.png)
+![](https://raw.githubusercontent.com/timelessmemory/WikiLibrary/master/cms/commentSaying.png)
 * 本系统模拟评论说说，所以设置了一张说说表。其中特别增加了一个likes字段，用户可以对说说"点赞"标记为喜欢。
 
 ### firstLevelComment一级评论表<br/>

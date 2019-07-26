@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="personal.timeless.cms.mapper.CommentSayingMapper" >
+
+    <resultMap id="SayingMap" type="commentSaying" >
+        <id column="saying_id" property="id" jdbcType="INTEGER" />
+        <id column="section_id" property="sectionId" jdbcType="INTEGER" />
+        <result column="sayingContent" property="sayingContent" jdbcType="INTEGER" />
+        <result column="author" property="author" jdbcType="VARCHAR" />
+        <result column="sayingAvatar" property="avatar" jdbcType="VARCHAR" />
+        <result column="likes" property="likes" jdbcType="VARCHAR" />
+        <result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+        <collection property="flcs" ofType="commentFirstLevel" column="sayingId">
+            <id column="flc_id" property="id" jdbcType="INTEGER" />
+            <result column="sayingId" property="sayingId" jdbcType="INTEGER" />
+            <result column="commenter" property="commenter"/>
+            <result column="commenterAvatar" property="avatar"/>
+            <result column="commentContent" property="commentContent"/>
+            <result column="commentTime" property="commentTime" jdbcType="TIMESTAMP" />
+            <collection property="slcs" ofType="commentSecondLevel" column="flcId">
+                <id column="slc_id" property="id" jdbcType="INTEGER" />
+                <result column="flcId" property="flcId" jdbcType="INTEGER" />
+                <result column="replier" property="replier"/>
+                <result column="toCommenter" property="toCommenter"/>
+                <result column="replyContent" property="replyContent"/>
+                <result column="replyTime" property="replyTime" jdbcType="TIMESTAMP" />
+            </collection>
+        </collection>
+    </resultMap>
+
+    <select id="selectListBySectionId" resultMap="SayingMap" parameterType="int" >
+        SELECT
+        *
+        FROM
+        (
+        SELECT
+        *
+        FROM
+        commentSaying s
+        LEFT JOIN commentFirstLevel fc ON s.saying_id = fc.sayingId
+        ) tmp
+        LEFT JOIN commentSecondLevel sc ON tmp.flc_id = sc.flcId
+        WHERE
+        section_id = #{id}
+    </select>
+
+    <insert id="insertComment" useGeneratedKeys="true" keyProperty="id"  parameterType="commentSaying">
+        INSERT INTO commentSaying (
+        saying_id,
+        sayingContent,
+        page_id,
+        author,
+        sayingAvatar,
+        likes,
+        createTime
+        )
+        VALUES
+        (
+        #{id},
+        #{sayingContent},
+        #{pageId},
+        #{author},
+        #{avatar},
+        #{likes},
+        #{createTime}
+        )
+    </insert>
+
+    <select id="selectOneById" resultMap="SayingMap" parameterType="int" >
+        select * from
+        (select * from commentSaying s left join commentFirstLevel fc on s.saying_id=fc.sayingId where s.saying_id=#{id}) tmp left join commentSecondLevel sc
+        on tmp.flc_id = sc.flcId
+    </select>
+
+    <select id="updateLikesById">
+        update commentSaying set likes = #{likes} where saying_id = #{id}
+    </select>
+
+    <delete id="deleteById">
+        DELETE
+        FROM
+        commentSaying
+        WHERE
+        saying_id = #{sayingId};
+    </delete>
+</mapper>

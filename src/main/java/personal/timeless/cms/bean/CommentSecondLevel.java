@@ -2,7 +2,7 @@ package personal.timeless.cms.bean;
 
 import java.util.Date;
 
-public class SecondLevelComment {
+public class CommentSecondLevel {
 	private Integer id;
 	private Integer sayingId;
 	private Integer flcId;
@@ -10,17 +10,18 @@ public class SecondLevelComment {
 	private String toCommenter;
 	private String replyContent;
 	private Date replyTime;
-	private FirstLevelComment flc;
-	
-	public SecondLevelComment() {
+	private CommentFirstLevel flc;
+
+
+	public CommentSecondLevel() {
 		this.replyTime = new Date();
 	}
 
-	public FirstLevelComment getFlc() {
+	public CommentFirstLevel getFlc() {
 		return flc;
 	}
 
-	public void setFlc(FirstLevelComment flc) {
+	public void setFlc(CommentFirstLevel flc) {
 		this.flc = flc;
 	}
 
@@ -82,7 +83,7 @@ public class SecondLevelComment {
 
 	@Override
 	public String toString() {
-		return "SecondLevelComment [id=" + id + ", sayingId=" + sayingId + ", flcId=" + flcId + ", replier=" + replier
+		return "CommentSecondLevel [id=" + id + ", sayingId=" + sayingId + ", flcId=" + flcId + ", replier=" + replier
 				+ ", toCommenter=" + toCommenter + ", replyContent=" + replyContent + ", replyTime=" + replyTime + "]";
 	}
 }
