@@ -10,7 +10,7 @@ public interface CommentSayingService {
 
 	public List<CommentSaying> selectListBySectionId(int id);
 
-	public CommentSaying QueryOneSaying(int id);
+	public CommentSaying queryOneSaying(int id);
 
 	public void deleteById(int sayingId);
 

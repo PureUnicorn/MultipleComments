@@ -24,7 +24,7 @@ public class CommentSayingServiceImpl implements CommentSayingService {
 	}
 
 	@Override
-	public CommentSaying QueryOneSaying(int id) {
+	public CommentSaying queryOneSaying(int id) {
 		return commentSayingMapper.selectOneById(id);
 	}
 

@@ -64,7 +64,7 @@ public class CommentSayingController {
 	  */
 	@RequestMapping("/saying/get/comment/{id}")
     public CommentSaying showCommment(@PathVariable(value="id") int id) {
-		return commentSayingService.QueryOneSaying(id);
+		return commentSayingService.queryOneSaying(id);
     }
 
     /**
